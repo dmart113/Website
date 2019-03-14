@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/header.ejs %>
+	<link rel="stylesheet" href="/assets/stylesheets/item.css" type = "text/css">
+        <meta name="viewport" content ="width=device-width">
+
+</head>
+ <body>
+<header>
+        <% include partials/site-navigation.ejs %>
+        <% include partials/user-navigation.ejs %>
+    </header>
+
+	<main>
+
+    <section id ="game">
+     <h2> <%= item.itemName %> </h2>
+
+     <h3> 10/10 - Steam </h3>
+
+     <a href="/cart">
+     <img src ="/assets/photos/cart.png" alt ="cart" width =55 title = "Cart">
+     </a>
+     <a href ="/myItems">
+     <img src ="/assets/photos/saved.jpg" alt ="saved" width =55 title ="Saved Items">
+     </a>
+     <a href="/categories/catalog">
+     <img src ="/assets/photos/continue.png" alt ="cart" width =100 height = 50 title = "continue">
+     </a>
+
+
+     <p id="desc"> <%= item.description %> </p>
+<form id = "save" action = "/items" method = "POST">
+      <input type = "hidden" name = "itemID" value= "<%= item.itemCode %>" />
+      <input type = "hidden" name  ="itemName" value= "<%= item.itemName %>" />
+      <input type = "hidden" name = "rating" value= 0 />
+      <input type = "hidden" name = "bought" value= "No" />
+      <button type = "submit" value = "submit"> Save It </button>
+  </form>
+    </section>
+    <img src = <%= item.imageURL %> alt = "re2" width = 400>
+
+	</main>
+<footer>
+<% include partials/footer.ejs %>
+</footer>
+ </body>
+ </html>

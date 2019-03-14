@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/header.ejs %>
+<link rel="stylesheet" href="./assets/stylesheets/myItems.css">
+        <meta name="viewport" content ="width=device-width">
+
+</head>
+ <body>
+<header>
+        <% include partials/site-navigation.ejs %>
+        <% include partials/user-navigation.ejs %>
+    </header>
+
+	<main>
+
+    <p> Your Saved Games </p>
+    <div id ="saved">
+        <table >
+            <tr>
+                <th> Game </th>
+                <th> Rating </th>
+                <th> Bought </th>
+                <th> Update Rating </th>
+                <th> Bought? </th>
+                <th> Delete </th>
+            </tr>
+            <tr>
+              <% for(var i =0; i < item.length;i++) { %>
+                <td> <%= item[i].item_ %> </td>
+                <td> <%= item[i].rating_  %> </td>
+                <td> <%= item[i].bought_ %> </td>
+                <td>   <form id = "updateRating" action = "/updateRating" method = "POST">
+                      <select name = "rating">
+                        <option name="rating" value = "0"> 0 </option>
+                        <option name="rating"value = "1"> 1 </option>
+                        <option name="rating" value = "2"> 2 </option>
+                        <option name="rating" value = "3"> 3 </option>
+                        <option name="rating" value = "4"> 4 </option>
+                        <option name="rating" value = "5"> 5 </option>
+                      </select>
+                      <input type = "hidden" name = "itemID" value= "<%= item[i].itemID_ %>" />
+                      <button type = "submit" value = "submit"> Update  </button>
+                      </form
+                    </a> </td>
+                <td>  <form id = "bought" action = "/updateFlag" method = "POST">
+                      <input type = "radio" name = "bought" value = "YES"> YES </input>
+                      <input type = "radio" name = "bought" value = "NO"> NO </input>
+                      <input type = "hidden" name = "itemID" value= "<%= item[i].itemID_ %>" />
+                      <button type = "submit" value = "submit"> Update </button>
+                      </form>
+                    </a> </td>
+                <td>  <form id = "delete" action = "/deleteItems" method = "POST">
+                      <input type = "hidden" name = "itemID" value= "<%= item[i].itemID_ %>" />
+                      <button type = "submit" value = "submit"> Delete </button>
+                      </form>
+                    </a> </td>
+
+            </tr>
+              <% } %>
+        </table>
+    </div>
+
+	</main>
+<footer>
+<% include partials/footer.ejs %>
+</footer>
+ </body>
+ </html>
